@@ -1,0 +1,19 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>
+<div class="metabox-fb_params">
+    <div class="form_field stretch field_fb_keywords">
+        <label class="width10">Название (og:title):</label>
+        <span class="form_field-input_box"><input name="metabox_fb_title" type="text" value="<?php echo $this->escape($this->fb_title); ?>"/></span>
+        <div class="form_field-tips">Если не заполнено, будет использовано оригинальное название</div>
+    </div>
+    <div class="form_field fullsize field_fb_description">
+        <label>Описание (og:desription):</label>
+        <span class="form_field-input_box"><textarea name="metabox_fb_description" ><?php echo $this->escape($this->fb_description); ?></textarea></span>
+        <div class="form_field-tips">Если не заполнено, будет использовано значение meta desription</div>
+    </div>
+</div>

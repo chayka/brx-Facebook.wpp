@@ -1,0 +1,22 @@
+<?php
+$this->declareVars(array(
+    'post_type' => 'post',
+    'count' => 10,
+));
+        
+$count = (int)$this->count;
+$count = $count?$count:10;
+
+$posts = PostModel::query()
+        ->postType($this->post_type)
+        ->postsPerPage($count)
+        ->orderBy_MetaValueNum('reviews_count')
+        ->order_DESC()
+        ->select();
+if($posts):?>
+<ul class="posts">
+<?php foreach($posts as $post):?>
+    <li><a href="<?php echo $post->getHref();?>"><?php echo $post->getTitle();?>&nbsp;(<?php echo $post->getReviewsCount();?>)</a></li>
+<?php endforeach;?>
+</ul>
+<?php endif;

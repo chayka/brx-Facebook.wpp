@@ -1,0 +1,61 @@
+<div class="wrap bem-zf_core-admin">
+    <div id="icon-options-general" class="icon32">
+        <br/>
+    </div>
+    <h2>Настройки Facebook</h2>
+</div>
+
+<div class="brx-options_form" data-view="brx.OptionsForm" data-scope="" data-prefix="brx_Facebook" style="display: none;">
+    <div class="form_fields">
+        <div class="form_field fullsize field_app_id" data-attach-point="fields.app_id" data-check-required="Please fill-in App ID">
+            <label>App ID:</label>
+            <div class="form_field-input_box">
+                <input name="app_id" type="text" value=""/> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+        <div class="form_field fullsize field_app_secret" data-attach-point="fields.app_secret" data-check-required="Please fill-in App Secret">
+            <label>App Secret:</label>
+            <div class="form_field-input_box">
+                <input name="app_secret" type="text" value=""/> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+        <div class="form_field fullsize field_admins" data-attach-point="fields.admins" data-check-required="Please fill-in Admins">
+            <label>Admins:</label>
+            <div class="form_field-input_box">
+                <input name="admins" type="text" value=""/> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+        <div class="form_field field_default_title fullsize" data-attach-point="fields.default_title" data-check-required="Please fill-in Default Title">
+            <label>Default Title:</label>
+            <div class="form_field-input_box">
+                <input name="default_title" type="text" value=""/> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+        <div class="form_field field_default_description" data-attach-point="fields.default_description" data-check-required="Please fill-in Default Description">
+            <label>Default Description:</label>
+            <div class="form_field-input_box">
+                <textarea name="default_description"></textarea> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+        <div class="form_field field_default_image" data-attach-point="fields.default_image" data-check-required="Please fill-in Default Image">
+            <label>Default Image:</label>
+            <div class="form_field-input_box">
+                <input name="default_image" type="text" value=""/> 
+            </div>
+            <div class="form_field-tips"></div>
+        </div>
+    </div>
+    <div class="button_pane">
+        <button class="button button-large button-primary" data-attach-event="saveOptions">Сохранить</button>
+    </div>
+    <script type="text/javascript">
+    //    window.setupOptions = <?php //echo JsonHelper::encode($this->options);?>;
+    </script>
+</div>
+<?php // WidgetHelper::renderMultiSpinner();?>
+<?php // ZF_Core::addJQueryWidgets();?>

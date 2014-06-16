@@ -1,0 +1,23 @@
+<?php 
+?><p><label for="<?php echo $id = $this->widget->get_field_id('title'); ?>">Название</label>
+<input class="widefat" id="<?php echo $id;?>" name="<?php echo $this->widget->get_field_name('title'); ?>" type="text" value="<?php echo $this->escape($this->title); ?>" /></p>
+<p><label for="<?php echo $id = $this->widget->get_field_id('post_type'); ?>">Типы записей (post_type)</label>
+<?php 
+$pts = get_post_types(array(
+    'publicly_queryable' =>true
+), 'objects' );
+$optionsPostTypes = array('any'=>'Любые');
+foreach($pts as $postType => $obj){
+    $optionsPostTypes[$postType]=$obj->label;
+}
+//Util::print_r($options);
+echo $this->formSelect($this->widget->get_field_name('post_type'), $this->post_type, 
+        array(
+            'class'=>'widefat',
+            'id' =>$id,
+            ), 
+        $optionsPostTypes);
+?>
+<!--<input class="widefat" id="<?php echo $id;?>" name="<?php echo $this->widget->get_field_name('post_type'); ?>" type="text" value="<?php echo $this->escape($this->post_type); ?>" /></p>-->
+<p><label for="<?php echo $id = $this->widget->get_field_id('count'); ?>">Количество записей</label>
+<input class="widefat" id="<?php echo $id;?>" name="<?php echo $this->widget->get_field_name('count'); ?>" type="text" value="<?php echo $this->escape($this->count); ?>" /></p>
