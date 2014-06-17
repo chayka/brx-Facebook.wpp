@@ -134,7 +134,7 @@ class FacebookHelper{
             $post = self::$post;
         }
         if($post){
-            return $post->getHref();
+            return '//'.$_SERVER['SERVER_NAME'].$post->getHref();
         }
         if(self::$url){
             return self::$url;
