@@ -185,7 +185,7 @@ class FacebookHelper{
     }
     
     public static function getAppAdmins(){
-        return OptionHelper_brx_Facebook::getOption('admins');
+        return preg_split('/[\s,]+/', OptionHelper_brx_Facebook::getOption('admins'));
     }
     
     public static function getFbData($post = null){

@@ -10,9 +10,9 @@
 <meta property="og:type" content="<?php echo $this->escape($this->type);?>"/>
 <?php endif; if($this->author):?>
 <meta property="og:author" content="<?php echo $this->escape($this->author);?>"/>
-<?php endif; if($this->admins):?>
-<meta property="fb:admins" content="<?php echo $this->escape($this->admins);?>"/>
-<?php endif; if($this->app_id):?>
+<?php endif; if($this->admins && count($this->admins)): foreach($this->admins as $admin):?>
+<meta property="fb:admins" content="<?php echo $this->escape($admin);?>"/>
+<?php endforeach; endif; if($this->app_id):?>
 <meta property="fb:app_id" content="<?php echo $this->escape($this->app_id);?>"/>
 <?php endif;?>
 <meta property="og:site_name" content="<?php echo Util::serverName();?>"/>
