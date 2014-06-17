@@ -68,7 +68,7 @@ class HtmlHelper_brx_Facebook{
     }
     
     public static function renderMeta(){
-        self::renderView('facebook/meta.phtml');
+        self::renderView('facebook/meta.phtml', FacebookHelper::getFbData());
     }
 }
 

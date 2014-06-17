@@ -16,6 +16,14 @@ class FacebookHelper{
         self::$post = $post;
     }
     
+    /**
+     * 
+     * @return PostModel
+     */
+    public static function getPost(){
+        return self::$post;
+    }
+    
     public static function setTitle($title){
         self::$title = $title;
     }
@@ -90,26 +98,34 @@ class FacebookHelper{
      * @param PostModel $post
      * @return String
      */
-    public static function getImage($post = null){
+    public static function getImages($post = null){
+        $images = array();
         if(!$post){
             $post = self::$post;
         }
-//        if(!$post){
-//            $post = HtmlHelper::g;
-//        }
         if($post){
-            if($post->getThumbnailId()){
-                $thumbnail = $post->getThumbnailData_Full();
-                return Util::getItem($thumbnail, 'url');
+            $attachments = $post->getAttachments('image');
+            $thumbId = $post->getThumbnailId();
+            if($thumbId && isset($attachments[$thumbId])){
+                $attachment = $attachments[$thumbId];
+                $data = $attachment->loadImageData('full');
+                $images[]= Util::getItem($data, 'url');
+                unset($attachments[$thumbId]);
+            }
+            foreach ($attachments as $attachment){
+                $data = $attachment->loadImageData('full');
+                $images[]= Util::getItem($data, 'url');
             }
         }
         if(self::$image){
-            return self::$image;
+            $images[]= self::$image;
         }
-//        if(HtmlHelper::getMetaDescription()){
-//            return HtmlHelper::getMetaDescription();
-//        }
-        return OptionHelper_brx_Facebook::getOption('default_image');
+        $defImg = OptionHelper_brx_Facebook::getOption('default_image');
+        if($defImg){
+            $images[]= $defImg;
+        }
+        
+        return array_unique($images);
     }
     
     public static function setType($type){
@@ -142,6 +158,24 @@ class FacebookHelper{
         return 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
     }
     
+    /**
+     * 
+     * @param PostModel $post
+     */
+    public static function getAuthor($post=null){
+        if(!$post){
+            $post = self::$post;
+        }
+        if($post){
+            $user = UserModel::selectById($post->getUserId());
+            if($user && $user->getMeta('fb_user_id')){
+                return $user->getMeta('fb_user_id');
+            }
+        }
+        return '';
+    }
+
+
     public static function getAppID(){
         return OptionHelper_brx_Facebook::getOption('app_id');
     }
@@ -152,6 +186,48 @@ class FacebookHelper{
     
     public static function getAppAdmins(){
         return OptionHelper_brx_Facebook::getOption('admins');
+    }
+    
+    public static function getFbData($post = null){
+        $data = array(); 
+        $admins = self::getAppAdmins();
+        if($admins){
+             $data['admins']=$admins;
+        }
+        $appId = self::getAppID();
+        if($appId){
+            $data['app_id']=$appId;
+        }
+        $fbPost = self::getPost();
+        $title = self::getTitle($post);
+        if($title){
+            $data['title']=$title;
+        }
+        $desc = self::getDescription($post);
+        if($desc){
+            $data['description']=$desc;
+        }
+        $url = self::getUrl($post);
+        if($url){
+            $data['url']= $url;
+        }
+        $images = self::getImages($post);
+        if($images){
+            $data['images']= $images;
+        }
+        $type = self::getType();
+        if($type){
+            $data['type']= $type;
+        }
+        $author = self::getAuthor($post);
+        if($author){
+            $data['author']= $author;
+        }        
+        if($fbPost){
+            $data['post']=$fbPost;
+        }
+
+        return $data;
     }
     
 }
