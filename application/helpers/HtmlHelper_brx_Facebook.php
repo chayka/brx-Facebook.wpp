@@ -66,5 +66,9 @@ class HtmlHelper_brx_Facebook{
         }
         return '';
     }
+    
+    public static function renderMeta(){
+        self::renderView('facebook/meta.phtml');
+    }
 }
 

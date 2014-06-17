@@ -8,6 +8,7 @@
   Author URI: http://facebook.com/mossounov
   License: GPL2
  */
+require_once 'application/helpers/FacebookHelper.php';
 require_once 'application/helpers/WidgetHelper_brx_Facebook.php';
 require_once 'application/helpers/HtmlHelper_brx_Facebook.php';
 require_once 'application/helpers/OptionHelper_brx_Facebook.php';
@@ -78,9 +79,9 @@ class brx_Facebook extends WpPlugin{
     
     public function registerMetaBoxes() {
         
-        $this->addMetaBox('seo_params',
-            NlsHelper::_( 'SEO Params'),
-            '/metabox/seo-params',
+        $this->addMetaBox('fb_params',
+            NlsHelper::_( 'Facebook Params'),
+            '/metabox/fb-params/',
             'normal',
             'high');
     }
@@ -96,7 +97,7 @@ class brx_Facebook extends WpPlugin{
     }
     
     public function registerActions(){
-
+        $this->addAction('wp_head', array('HtmlHelper_brx_Facebook', 'renderMeta'));
     }
     
     public function registerFilters(){
@@ -104,7 +105,7 @@ class brx_Facebook extends WpPlugin{
     }
     
     public function registerConsolePages() {
-        $this->addConsolePage('Theme Options', 'Theme Options', 'update_core', 'brx-facebook-plugin-options', '/admin/plugin-options');
+        $this->addConsolePage('Facebook Options', 'Facebook Options', 'update_core', 'brx-facebook-plugin-options', '/admin/fb-options');
 
     }
 

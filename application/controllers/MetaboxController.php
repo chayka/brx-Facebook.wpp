@@ -5,7 +5,8 @@ class brx_Facebook_MetaboxController extends Zend_Controller_Action{
     public function init(){
     }
     
-    public function FbParamsAction(){
+    public function fbParamsAction(){
+//        echo "?"; return;
         global $post;
         
         $zfPost = PostModel::unpackDbRecord($post);
