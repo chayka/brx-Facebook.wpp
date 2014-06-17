@@ -134,12 +134,12 @@ class FacebookHelper{
             $post = self::$post;
         }
         if($post){
-            return $_SERVER['SERVER_PROTOCOL'].'//'.$_SERVER['SERVER_NAME'].$post->getHref();
+            return 'http://'.$_SERVER['SERVER_NAME'].$post->getHref();
         }
         if(self::$url){
             return self::$url;
         }
-        return $_SERVER['SERVER_PROTOCOL'].'//'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+        return 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
     }
     
     public static function getAppID(){
