@@ -37,23 +37,23 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
         if ($me && $me->getId() == $userID) {
             $email = $me->getProperty('email');
             if($email){
-                echo "[email captured $email] ";
+//                echo "[email captured $email] ";
                 $user = UserModel::selectByEmail($email);
                 if($user){
-                    echo "[user found] ";
-                    Util::print_r($user);
+//                    echo "[user found] ";
+//                    Util::print_r($user);
                     $user->updateMeta('fb_user_id', $userID);
                 }
             }
             if(!$user){
-                echo "[fetching by id $userID] ";
+//                echo "[fetching by id $userID] ";
                 $user = UserModel::query()
                         ->metaQuery('fb_user_id', $userID)
                         ->selectOne();
-                Util::print_r($user);
+//                Util::print_r($user);
             }
             if (!$user) {
-                echo "[no user found, creating new one]";
+//                echo "[no user found, creating new one]";
                 $user = new UserModel();
                 $wpUserId = $user->setLogin('fb' . $userID)
                         ->setEmail($email?$email:$userID . "@facebook.com")
@@ -63,17 +63,17 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
                         ->setNicename(ZF_Core::slug(strtolower(join('.', array($me->getFirstName(), $me->getLastName())))))
                         ->setPassword(wp_generate_password(12, false))
                         ->insert();
-                Util::print_r($user);
+//                Util::print_r($user);
                 if ($wpUserId) {
-                    echo "[user created] ";
+//                    echo "[user created] ";
                     $user->updateMeta('fb_user_id', $userID);
                     $user->updateMeta('source', 'facebook');
                     $user = UserModel::selectById($user->getId());
-                    Util::print_r($user);
+//                    Util::print_r($user);
                 }
             }
-            echo "[authenticating with user] ";
-            Util::print_r($user);
+//            echo "[authenticating with user] ";
+//            Util::print_r($user);
             $secure_cookie = is_ssl();
             wp_set_auth_cookie($user->getId(), false, $secure_cookie);
             do_action('wp_login', $user->getLogin(), $user->getWpUser());
