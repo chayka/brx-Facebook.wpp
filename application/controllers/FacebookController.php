@@ -38,7 +38,9 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
             $email = $me->getProperty('email');
             if($email){
                 $user = UserModel::selectByEmail($email);
-                $user->updateMeta('fb_user_id', $userID);
+                if($user){
+                    $user->updateMeta('fb_user_id', $userID);
+                }
             }else{
                 $user = UserModel::query()
                         ->metaQuery('fb_user_id', $userID)
