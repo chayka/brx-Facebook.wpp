@@ -10,6 +10,7 @@
         postCreate: function(){
             console.log('widget warm-up');
             this.getFB();
+            $(document).on('logout', $.proxy(this.logout, this));
         },
         
         getFB: function(){
