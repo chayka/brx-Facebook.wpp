@@ -56,6 +56,7 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
                         ->insert();
                 if ($wpUserId) {
                     $user->updateMeta('fb_user_id', $userID);
+                    $user->updateMeta('source', 'facebook');
                     $user = UserModel::selectById($user->getId());
                 }
             }
