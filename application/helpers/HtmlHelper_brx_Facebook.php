@@ -66,6 +66,13 @@ class HtmlHelper_brx_Facebook{
         }
         return '';
     }
+
+    public static function renderJsInit($locale = ''){
+        self::renderView('facebook/js-init.phtml', array(
+            'appId'=>FacebookHelper::getAppID(),
+            'locale'=>$locale?$locale:NlsHelper::getLocale()->toString(),
+        ));
+    }
     
     public static function renderMeta(){
         self::renderView('facebook/meta.phtml', FacebookHelper::getFbData());

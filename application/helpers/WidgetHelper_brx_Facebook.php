@@ -7,11 +7,7 @@ class WidgetHelper_brx_Facebook extends WidgetHelper{
         return parent::renderWidget($data, $tpl, $js, $css);
     }
     
-    public static function renderDummy($user){
-        return self::renderWidget(array('user'=>$user), 'widgets/brx.Facebook.Dummy.view.phtml', 'brx.Facebook.Dummy.view');
-    }
-
-    public static function renderDummyForm($user){
-        return self::renderWidget(array('user'=>$user), 'widgets/brx.Facebook.DummyForm.view.phtml', 'brx.Facebook.DummyForm.view');
+    public static function renderAuth(){
+        return self::renderWidget(array(), 'widgets/brx.Facebook.Auth.view.phtml', 'brx.Facebook.Auth.view');
     }
 }

@@ -1,5 +1,5 @@
 (function(){
-    nls.set('brx.Facebook.Dummy', {
+    nls.set('brx.Facebook.Auth', {
 //       'string': 'translation',
     });
 }).call(this);
