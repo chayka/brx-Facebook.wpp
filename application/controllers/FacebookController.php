@@ -62,6 +62,7 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
                     $user = UserModel::selectById($user->getId());
                 }
             }
+            Util::print_r($user);
             $secure_cookie = is_ssl();
             wp_set_auth_cookie($user->getId(), false, $secure_cookie);
             do_action('wp_login', $user->getLogin(), $user->getWpUser());
