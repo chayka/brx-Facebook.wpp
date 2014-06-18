@@ -44,7 +44,8 @@ class brx_Facebook_FacebookController extends Zend_Controller_Action{
                     Util::print_r($user);
                     $user->updateMeta('fb_user_id', $userID);
                 }
-            }else{
+            }
+            if(!$user){
                 echo "[fetching by id $userID] ";
                 $user = UserModel::query()
                         ->metaQuery('fb_user_id', $userID)
