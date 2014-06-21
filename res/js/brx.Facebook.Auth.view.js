@@ -101,7 +101,7 @@
 //                    }
                 },this),
                 complete: $.proxy(function(data){
-                    this.enableInputs();
+//                    this.enableInputs();
 //                    this.getSpinner().hide($.proxy(this.showMessage, this));
                 },this)
             });
