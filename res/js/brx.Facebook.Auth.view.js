@@ -94,9 +94,11 @@
                 success:$.proxy(function(data){
                     console.dir({'data': data});
 //                    this.setMessage(this.nls('message_welcome'));//'Выход выполнен, до новых встреч!');
-                    if(data.payload.id !== $.wp.currentUser.id){
-                        $.brx.utils.loadPage();
-                    }
+                    $.wp.currentUser.set(data.payload);
+                    $(document).trigger('userChanged', data.payload);
+//                    if(data.payload.id !== $.wp.currentUser.id){
+//                        $.brx.utils.loadPage();
+//                    }
                 },this),
                 complete: $.proxy(function(data){
                     this.enableInputs();
