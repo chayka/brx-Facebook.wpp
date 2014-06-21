@@ -96,6 +96,7 @@
 //                    this.setMessage(this.nls('message_welcome'));//'Выход выполнен, до новых встреч!');
                     $.wp.currentUser.set(data.payload);
                     $(document).trigger('userChanged', data.payload);
+                    $(document).trigger('Facebook.Auth.userLoggedIn');
 //                    if(data.payload.id !== $.wp.currentUser.id){
 //                        $.brx.utils.loadPage();
 //                    }
