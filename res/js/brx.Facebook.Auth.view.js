@@ -11,6 +11,8 @@
             console.log('widget warm-up');
             this.getFB();
             $(document).on('logout', $.proxy(this.logout, this));
+            $('a[href*="#facebook-login"]').on( "click", $.proxy(this.onLoginButtonClicked, this));
+            
         },
         
         getFB: function(){
@@ -80,6 +82,11 @@
                 this.getFBuserId() && this.buttonLogoutClicked();
 //                FB.login();
             }
+        },
+        
+        onLoginButtonClicked: function(event){
+            event && event.preventDefault();
+            this.getFB().login(function(response){}, {scope:'basic_info,email'});
         },
         
         onFBlogin: function(FBResponse){
